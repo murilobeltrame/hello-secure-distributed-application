@@ -6,5 +6,43 @@
 #
 name: hellosecuredistributedapplication
 services:
+- name: fleet
+  dockerFile: frontend/angular-app/Dockerfile
+  bindings:
+    - protocol: http
+      port: 8880
 - name: fleet-api
   project: backend/Fleet.Api/Fleet.Api.csproj
+- name: fleet-api-db
+  image: postgres:14.4
+  env:
+    - name: POSTGRES_USER
+      value: postgres
+    - name: POSTGRES_PASSWORD
+      value: password
+    - name: POSTGRES_DB
+      value: fleet
+  bindings:
+    - port: 5432
+      containerPort: 5432
+      connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
+- name: fleet
+  dockerFile: frontend/react-app/Dockerfile
+  bindings:
+    - protocol: http
+      port: 8881
+- name: businesspartners-api-db
+  image: mysql:8.0
+  env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: password
+    - name: MYSQL_DATABASE
+      value: business-partners
+    - name: MYSQL_USER
+      value: mysql
+    - name: MYSQL_PASSWORD
+      value: password
+  bindings:
+    - port: 3306
+      containerPort: 3306
+      connectionString: Server=${host};Port=${port};User Id=${env:MYSQL_USER};Password=${env:MYSQL_PASSWORD};
