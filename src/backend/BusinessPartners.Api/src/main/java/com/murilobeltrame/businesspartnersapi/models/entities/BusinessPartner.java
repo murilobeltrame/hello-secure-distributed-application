@@ -3,7 +3,7 @@ package com.murilobeltrame.businesspartnersapi.models.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "business-partners")
+@Table(name = "business_partners")
 public class BusinessPartner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
