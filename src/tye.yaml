@@ -8,14 +8,17 @@ name: hellosecuredistributedapplication
 services:
 - name: auth-server
   image: quay.io/keycloak/keycloak
+  args: start-dev
   env:
     - name: KEYCLOAK_ADMIN
       value: admin
     - name: KEYCLOAK_ADMIN_PASSWORD
       value: admin
   bindings:
-    - port: 8180
-      containerPort: 8180
+    - name: auth-server-http
+      protocol: http
+      port: 8080
+      containerPort: 8080
 - name: fleet
   dockerFile: frontend/angular-app/Dockerfile
   bindings:
@@ -47,8 +50,8 @@ services:
   dockerFile: backend/BusinessPartners.Api/Dockerfile
   bindings:
     - protocol: http
-      containerPort: 8080
-      port: 8884
+      containerPort: 9090
+      port: 9090
 - name: businesspartners-api-db
   image: mysql:8.0
   env:
