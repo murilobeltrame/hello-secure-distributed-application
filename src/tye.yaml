@@ -19,36 +19,8 @@ services:
       protocol: http
       port: 8080
       containerPort: 8080
-- name: fleet
-  dockerFile: frontend/angular-app/Dockerfile
-  bindings:
-    - protocol: http
-      containerPort: 80
-      port: 8880
-- name: fleet-api
-  project: backend/Fleet.Api/Fleet.Api.csproj
-- name: fleet-api-db
-  image: postgres:14.4
-  env:
-    - name: POSTGRES_USER
-      value: postgres
-    - name: POSTGRES_PASSWORD
-      value: password
-    - name: POSTGRES_DB
-      value: fleet
-  bindings:
-    - port: 54321
-      containerPort: 5432
-      connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
-- name: businesspartners
-  dockerFile: frontend/react-app/Dockerfile
-  bindings:
-    - protocol: http
-      containerPort: 80
-      port: 8881
-- name: businesspartners-api
-  project: backend/BusinessPartners.Api/BusinessPartners.Api.csproj
-- name: businesspartners-api-db
+
+- name: business-partners-db
   image: postgres:14.4
   env:
     - name: POSTGRES_USER
@@ -58,6 +30,53 @@ services:
     - name: POSTGRES_DB
       value: business_partners
   bindings:
+    - port: 54321
+      containerPort: 5432
+      connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
+- name: fleet-db
+  image: postgres:14.4
+  env:
+    - name: POSTGRES_USER
+      value: postgres
+    - name: POSTGRES_PASSWORD
+      value: password
+    - name: POSTGRES_DB
+      value: fleet
+  bindings:
     - port: 54322
       containerPort: 5432
       connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
+- name: tenants-db
+  image: postgres:14.4
+  env:
+    - name: POSTGRES_USER
+      value: postgres
+    - name: POSTGRES_PASSWORD
+      value: password
+    - name: POSTGRES_DB
+      value: tenants
+  bindings:
+    - port: 54323
+      containerPort: 5432
+      connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
+
+- name: businesspartners
+  dockerFile: frontend/react-app/Dockerfile
+  bindings:
+    - protocol: http
+      containerPort: 80
+      port: 8881
+- name: fleet
+  dockerFile: frontend/angular-app/Dockerfile
+  bindings:
+    - protocol: http
+      containerPort: 80
+      port: 8880
+
+
+- name: businesspartners-api
+  project: backend/BusinessPartners.Api/BusinessPartners.Api.csproj
+- name: fleet-api
+  project: backend/Fleet.Api/Fleet.Api.csproj
+- name: tenants-api
+  project: backend/Tenants.Api/Tenants.Api.csproj
