@@ -12,4 +12,3 @@ namespace Fleet.Api.Models
         public DbSet<Vehicle> Vehicles { get; set; }
     }
 }
-

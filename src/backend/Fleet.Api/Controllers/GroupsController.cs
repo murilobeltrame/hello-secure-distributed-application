@@ -2,6 +2,7 @@
 using Fleet.Api.Models.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel.Web.Controllers;
 
 namespace Fleet.Api.Controllers
 {

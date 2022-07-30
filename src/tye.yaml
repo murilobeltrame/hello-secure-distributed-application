@@ -37,7 +37,7 @@ services:
     - name: POSTGRES_DB
       value: fleet
   bindings:
-    - port: 5432
+    - port: 54321
       containerPort: 5432
       connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
 - name: businesspartners
@@ -47,23 +47,17 @@ services:
       containerPort: 80
       port: 8881
 - name: businesspartners-api
-  dockerFile: backend/BusinessPartners.Api/Dockerfile
-  bindings:
-    - protocol: http
-      containerPort: 9090
-      port: 9090
+  project: backend/BusinessPartners.Api/BusinessPartners.Api.csproj
 - name: businesspartners-api-db
-  image: mysql:8.0
+  image: postgres:14.4
   env:
-    - name: MYSQL_ROOT_PASSWORD
+    - name: POSTGRES_USER
+      value: postgres
+    - name: POSTGRES_PASSWORD
       value: password
-    - name: MYSQL_DATABASE
-      value: business-partners
-    - name: MYSQL_USER
-      value: mysql
-    - name: MYSQL_PASSWORD
-      value: password
+    - name: POSTGRES_DB
+      value: business_partners
   bindings:
-    - port: 3306
-      containerPort: 3306
-      connectionString: Server=${host};Port=${port};User Id=${env:MYSQL_USER};Password=${env:MYSQL_PASSWORD};
+    - port: 54322
+      containerPort: 5432
+      connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};

@@ -33,4 +33,9 @@
     <Folder Include="Models\Entities\" />
     <Folder Include="Models\Repositories\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

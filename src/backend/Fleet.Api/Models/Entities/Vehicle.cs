@@ -1,4 +1,6 @@
-﻿namespace Fleet.Api.Models.Entities
+﻿using SharedKernel.Models;
+
+namespace Fleet.Api.Models.Entities
 {
     public class Vehicle: BaseEntity
 	{

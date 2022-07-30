@@ -2,6 +2,7 @@
 using Fleet.Api.Models.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel.Web.Controllers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,4 +15,3 @@ namespace Fleet.Api.Controllers
         public CompaniesController(CompaniesRepository repository) : base(repository) { }
     }
 }
-
