@@ -7,7 +7,7 @@ using Tenants.Api.Models.Repositories;
 
 namespace Tenants.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("tenants")]
     public class TenantsController : BaseController<Tenant>
     {

@@ -60,6 +60,14 @@ services:
       containerPort: 5432
       connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
 
+- name: businesspartners-api
+  project: backend/BusinessPartners.Api/BusinessPartners.Api.csproj
+- name: fleet-api
+  project: backend/Fleet.Api/Fleet.Api.csproj
+- name: tenants-api
+  project: backend/Tenants.Api/Tenants.Api.csproj
+
+
 - name: businesspartners
   dockerFile: frontend/react-app/Dockerfile
   bindings:
@@ -72,11 +80,3 @@ services:
     - protocol: http
       containerPort: 80
       port: 8880
-
-
-- name: businesspartners-api
-  project: backend/BusinessPartners.Api/BusinessPartners.Api.csproj
-- name: fleet-api
-  project: backend/Fleet.Api/Fleet.Api.csproj
-- name: tenants-api
-  project: backend/Tenants.Api/Tenants.Api.csproj
