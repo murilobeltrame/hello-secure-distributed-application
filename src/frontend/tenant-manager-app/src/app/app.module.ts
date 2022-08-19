@@ -15,7 +15,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     },
     initOptions: {
       onLoad: 'login-required',
-      silentCheckSsoRedirectUri: window.location.origin + '/assets/verify-sso.html'
+      silentCheckSsoRedirectUri: `${window.location.origin}/assets/verify-sso.html`
     }
   })
 }
