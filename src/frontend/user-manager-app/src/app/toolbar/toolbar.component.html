@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <span>Hello Application</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>settings</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>group</mat-icon>
+            Users Management
+        </button>
+        <button mat-menu-item>
+            <mat-icon>business center</mat-icon>
+            Tenants Management
+        </button>
+        <button mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </mat-menu>
+</mat-toolbar>
+<mat-toolbar>
+    <button mat-button>Business Partners</button>
+    <button mat-button>Fleet Management</button>
+</mat-toolbar>
